@@ -9,23 +9,29 @@
 <body>
     <header>
         <h1>Mini E-Commerce Store</h1>
+        <nav>
+            <a href="#" onclick="viewCart()">🛒 View Cart</a>
+        </nav>
     </header>
     <main>
         <section id="product-list">
-            <!-- Products will be loaded here by JavaScript -->
+            <!-- Products will load here -->
         </section>
     </main>
     <footer>
         <p>&copy; 2025 Mini E-Commerce</p>
     </footer>
-
+   
     <script>
         // Sample product data
         const products = [
-            { id: 1, name: "Product A", description: "Description of Product A", price: 29.99 },
-            { id: 2, name: "Product B", description: "Description of Product B", price: 49.99 },
-            { id: 3, name: "Product C", description: "Description of Product C", price: 19.99 },
+            { id: 1, name: "Product A", description: "Description of Product A", price: 19.99 },
+            { id: 2, name: "Product B", description: "Description of Product B", price: 29.99 },
+            { id: 3, name: "Product C", description: "Description of Product C", price: 39.99 }
         ];
+
+        // Save products to localStorage so cart.js can use them
+        localStorage.setItem("products", JSON.stringify(products));
 
         // Function to render product list on the page
         function renderProducts() {
@@ -41,8 +47,8 @@
                     <p>${product.description}</p>
                     <p><strong>Price:</strong> $${product.price.toFixed(2)}</p>
                     <button onclick="addToCart(${product.id})">Add to Cart</button>
-                    <br/>
-                    <a href="product-details.html?id=${product.id}">View Details</a>
+                    <br />
+                    <a href="product-details.html?id=${product.id}">View Detail</a>
                 `;
 
                 productList.appendChild(productDiv);
@@ -55,8 +61,14 @@
             alert(`Added "${product.name}" to cart!`);
         }
 
+        // Placeholder viewCart function
+        function viewCart() {
+            alert("View Cart clicked");
+        }
+
         // Initialize product list on page load
         window.onload = renderProducts;
     </script>
 </body>
 </html>
+
